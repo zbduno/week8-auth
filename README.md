@@ -1,6 +1,6 @@
 # Simple Todo App
 
-This simple todo app has an add, edit, and delete functionality. It uses a provider for state management
+The todo app connects to firebase cloud firestore and authentication. It uses a provider for state management
 
 ## Folder Structure
 ```
