@@ -5,13 +5,19 @@ This simple todo app has an add, edit, and delete functionality. It uses a provi
 ## Folder Structure
 ```
 lib
+├───api
+│   └───firebase_auth_api.dart
+│   └───firebase_todo_api.dart
 ├───models
 │   └───todo_model.dart
 ├───providers
 │   └───todo_provider.dart
+│   └───auth_provider.dart
 ├───screens
 │   ├───modal_todo.dart
 │   └───todo_page.dart
+│   └───login.dart
+│   └───signup.dart
 └───main.dart
 ```
 
