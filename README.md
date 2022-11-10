@@ -1,4 +1,4 @@
-# Simple Todo App
+# Simple Todo App using Firebase
 
 The todo app connects to firebase cloud firestore and authentication. It uses a provider for state management
 
