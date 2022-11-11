@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:week7_networking_discussion/models/todo_model.dart';
 import 'package:week7_networking_discussion/providers/todo_provider.dart';
+import 'package:week7_networking_discussion/providers/auth_provider.dart';
 import 'package:week7_networking_discussion/screens/modal_todo.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -25,6 +26,16 @@ class _TodoPageState extends State<TodoPage> {
     Stream<QuerySnapshot> todosStream = context.watch<TodoListProvider>().todos;
 
     return Scaffold(
+      drawer: Drawer(
+          child: ListView(padding: EdgeInsets.zero, children: [
+        ListTile(
+          title: const Text('Logout'),
+          onTap: () {
+            context.read<AuthProvider>().signOut();
+            Navigator.pop(context);
+          },
+        ),
+      ])),
       appBar: AppBar(
         title: Text("Todo"),
       ),

@@ -10,11 +10,11 @@ class AuthProvider with ChangeNotifier {
   AuthProvider() {
     authService = FirebaseAuthAPI();
     authService.getUser().listen((User? newUser) {
-      print('AuthProvider - FirebaseAuth - onAuthStateChanged - $user');
       userObj = newUser;
       notifyListeners();
     }, onError: (e) {
-      print('AuthProvider - FirebaseAuth - onAuthStateChanged - $e');
+      // print a more useful error
+      // print('AuthProvider - FirebaseAuth - onAuthStateChanged - $e');
     });
   }
 
@@ -24,41 +24,15 @@ class AuthProvider with ChangeNotifier {
     return user != null;
   }
 
-  void signIn() async {
-    try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: "aaa@gmail.com", password: "11111111");
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
-      }
-    }
+  void signIn(String email, String password) {
+    authService.signIn(email, password);
   }
 
   void signOut() {
-    FirebaseAuth.instance.signOut();
+    authService.signOut();
   }
 
-  Future<bool> signUp() async {
-    try {
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: "aaa@gmail.com",
-        password: "11111111",
-      );
-      return true;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-      }
-      return false;
-    } catch (e) {
-      print(e);
-      return false;
-    }
+  void signUp(String email, String password) {
+    authService.signUp(email, password);
   }
 }
