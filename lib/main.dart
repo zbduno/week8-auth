@@ -45,17 +45,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-class AuthWrapper extends StatelessWidget {
-  const AuthWrapper({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    if (context.watch<AuthProvider>().isAuthenticated) {
-      return const TodoPage();
-    } else {
-      return const LoginPage();
-    }
-  }
-}

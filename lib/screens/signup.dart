@@ -33,10 +33,6 @@ class _SignupPageState extends State<SignupPage> {
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: ElevatedButton(
         onPressed: () {
-          context
-              .read<AuthProvider>()
-              .signUp(emailController.text, passwordController.text);
-          Navigator.pop(context);
           //call the auth provider here
         },
         child: const Text('Sign up', style: TextStyle(color: Colors.white)),
@@ -48,7 +44,6 @@ class _SignupPageState extends State<SignupPage> {
       child: ElevatedButton(
         onPressed: () async {
           Navigator.pop(context);
-          //call the auth provider here
         },
         child: const Text('Back', style: TextStyle(color: Colors.white)),
       ),
