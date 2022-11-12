@@ -16,6 +16,7 @@ class _LoginPageState extends State<LoginPage> {
     TextEditingController passwordController = TextEditingController();
 
     final email = TextField(
+      key: const Key('emailField'),
       controller: emailController,
       decoration: const InputDecoration(
         hintText: "Email",
@@ -23,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     final password = TextField(
+      key: const Key('pwField'),
       controller: passwordController,
       obscureText: true,
       decoration: const InputDecoration(
@@ -31,16 +33,20 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     final loginButton = Padding(
+      key: const Key('loginButton'),
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: ElevatedButton(
         onPressed: () {
-          //call the provider
+          context
+              .read<AuthProvider>()
+              .signIn(emailController.text, passwordController.text);
         },
         child: const Text('Log In', style: TextStyle(color: Colors.white)),
       ),
     );
 
-    final logoutButton = Padding(
+    final signUpButton = Padding(
+      key: const Key('signUpButton'),
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: ElevatedButton(
         onPressed: () async {
@@ -69,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
             email,
             password,
             loginButton,
-            logoutButton,
+            signUpButton,
           ],
         ),
       ),
